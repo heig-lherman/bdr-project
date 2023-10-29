@@ -1,1 +1,70 @@
-<diagram program="umletino" version="15.1"><zoom_level>10</zoom_level></diagram>
+<diagram program="umletino" version="15.1"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>860</x><y>430</y><w>120</w><h>150</h></coordinates><panel_attributes>Station
+--
+__code__
+identifiant didok
+nom
+géoposition
+point kilométrique
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>610</x><y>430</y><w>100</w><h>60</h></coordinates><panel_attributes>Segment
+--
+__id__
+distance</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>360</x><y>430</y><w>100</w><h>150</h></coordinates><panel_attributes>Ligne
+--
+__numéro__
+nom</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>450</x><y>430</y><w>180</w><h>50</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=1..*
+composée de &gt;</panel_attributes><additional_attributes>10;20;160;20</additional_attributes></element><element><id>Relation</id><coordinates><x>700</x><y>430</y><w>180</w><h>50</h></coordinates><panel_attributes>lt=-
+m1=1..*
+m2=2
+borné par&gt;</panel_attributes><additional_attributes>10;20;160;20</additional_attributes></element><element><id>UMLClass</id><coordinates><x>360</x><y>170</y><w>100</w><h>110</h></coordinates><panel_attributes>Utilisateur
+--
+__email__
+username
+password
+prénom
+nom de famille
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>610</x><y>170</y><w>100</w><h>110</h></coordinates><panel_attributes>Voyage
+--
+__id__
+date début
+date fin
+note
+commentaire
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>450</x><y>180</y><w>180</w><h>50</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=*
+effectue &gt;</panel_attributes><additional_attributes>10;20;160;20</additional_attributes></element><element><id>Relation</id><coordinates><x>650</x><y>270</y><w>120</w><h>180</h></coordinates><panel_attributes>lt=-
+m1=*
+m2=1..*
+parcours par v</panel_attributes><additional_attributes>10;10;10;160</additional_attributes></element><element><id>Relation</id><coordinates><x>400</x><y>270</y><w>80</w><h>180</h></coordinates><panel_attributes>lt=-
+m1=0..n
+m2=0..1
+évalue v</panel_attributes><additional_attributes>10;10;10;160</additional_attributes></element><element><id>UMLClass</id><coordinates><x>150</x><y>330</y><w>160</w><h>70</h></coordinates><panel_attributes>Évaluation d'une ligne
+--
+note
+commentaire</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>300</x><y>350</y><w>130</w><h>30</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;110;10</additional_attributes></element><element><id>UMLNote</id><coordinates><x>130</x><y>230</y><w>200</w><h>70</h></coordinates><panel_attributes>CI: Une évaluation d'une ligne se fait seulement pour celles qui contiennent des segments déjà visités par l'utilisateur 
+bg=blue
+style=wordwrap</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>360</x><y>660</y><w>100</w><h>60</h></coordinates><panel_attributes>Type de voie
+--
+__code__
+description</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>400</x><y>570</y><w>120</w><h>110</h></coordinates><panel_attributes>lt=-
+m1=*
+m2=1
+voies de type v</panel_attributes><additional_attributes>10;10;10;90</additional_attributes></element><element><id>UMLClass</id><coordinates><x>870</x><y>660</y><w>100</w><h>60</h></coordinates><panel_attributes>Type de station
+--
+__code__
+description</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>910</x><y>570</y><w>70</w><h>110</h></coordinates><panel_attributes>lt=-
+m1=*
+m2=1
+type v</panel_attributes><additional_attributes>10;10;10;90</additional_attributes></element><element><id>UMLClass</id><coordinates><x>870</x><y>280</y><w>100</w><h>60</h></coordinates><panel_attributes>Pays
+--
+__code iso__
+nom
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>910</x><y>330</y><w>90</w><h>120</h></coordinates><panel_attributes>lt=-
+m1=*
+m2=1
+localisé ^</panel_attributes><additional_attributes>10;100;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>450</x><y>540</y><w>430</w><h>50</h></coordinates><panel_attributes>lt=-
+m1=*
+m2=2
+bornée par &gt;</panel_attributes><additional_attributes>10;20;410;20</additional_attributes></element></diagram>
