@@ -1,70 +1,104 @@
-<diagram program="umletino" version="15.1"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>860</x><y>430</y><w>120</w><h>150</h></coordinates><panel_attributes>Station
+<diagram program="umletino" version="15.1"><zoom_level>9</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>720</x><y>441</y><w>108</w><h>135</h></coordinates><panel_attributes>Station
 --
 __code__
 identifiant didok
 nom
 géoposition
 point kilométrique
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>610</x><y>430</y><w>100</w><h>60</h></coordinates><panel_attributes>Segment
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>495</x><y>441</y><w>90</w><h>54</h></coordinates><panel_attributes>Segment
 --
 __id__
-distance</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>360</x><y>430</y><w>100</w><h>150</h></coordinates><panel_attributes>Ligne
+distance</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>270</x><y>441</y><w>90</w><h>135</h></coordinates><panel_attributes>Ligne
 --
 __numéro__
-nom</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>450</x><y>430</y><w>180</w><h>50</h></coordinates><panel_attributes>lt=-
+nom</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>351</x><y>441</y><w>162</w><h>45</h></coordinates><panel_attributes>lt=-
 m1=1
 m2=1..*
-composée de &gt;</panel_attributes><additional_attributes>10;20;160;20</additional_attributes></element><element><id>Relation</id><coordinates><x>700</x><y>430</y><w>180</w><h>50</h></coordinates><panel_attributes>lt=-
+composée de &gt;</panel_attributes><additional_attributes>10;20;160;20</additional_attributes></element><element><id>Relation</id><coordinates><x>576</x><y>441</y><w>162</w><h>45</h></coordinates><panel_attributes>lt=-
 m1=1..*
 m2=2
-borné par&gt;</panel_attributes><additional_attributes>10;20;160;20</additional_attributes></element><element><id>UMLClass</id><coordinates><x>360</x><y>170</y><w>100</w><h>110</h></coordinates><panel_attributes>Utilisateur
+borné par&gt;</panel_attributes><additional_attributes>10;20;160;20</additional_attributes></element><element><id>UMLClass</id><coordinates><x>270</x><y>207</y><w>90</w><h>99</h></coordinates><panel_attributes>Utilisateur
 --
 __email__
 username
 password
 prénom
 nom de famille
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>610</x><y>170</y><w>100</w><h>110</h></coordinates><panel_attributes>Voyage
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>495</x><y>207</y><w>90</w><h>99</h></coordinates><panel_attributes>Voyage
 --
 __id__
 date début
 date fin
 note
 commentaire
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>450</x><y>180</y><w>180</w><h>50</h></coordinates><panel_attributes>lt=-
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>351</x><y>216</y><w>162</w><h>45</h></coordinates><panel_attributes>lt=-
 m1=1
 m2=*
-effectue &gt;</panel_attributes><additional_attributes>10;20;160;20</additional_attributes></element><element><id>Relation</id><coordinates><x>650</x><y>270</y><w>120</w><h>180</h></coordinates><panel_attributes>lt=-
+effectue &gt;</panel_attributes><additional_attributes>10;20;160;20</additional_attributes></element><element><id>Relation</id><coordinates><x>531</x><y>297</y><w>108</w><h>162</h></coordinates><panel_attributes>lt=-
 m1=*
 m2=1..*
-parcours par v</panel_attributes><additional_attributes>10;10;10;160</additional_attributes></element><element><id>Relation</id><coordinates><x>400</x><y>270</y><w>80</w><h>180</h></coordinates><panel_attributes>lt=-
-m1=0..n
-m2=0..1
-évalue v</panel_attributes><additional_attributes>10;10;10;160</additional_attributes></element><element><id>UMLClass</id><coordinates><x>150</x><y>330</y><w>160</w><h>70</h></coordinates><panel_attributes>Évaluation d'une ligne
+parcours par v</panel_attributes><additional_attributes>10;10;10;160</additional_attributes></element><element><id>Relation</id><coordinates><x>306</x><y>297</y><w>72</w><h>162</h></coordinates><panel_attributes>lt=-
+m1=*
+m2=*
+évalue v</panel_attributes><additional_attributes>10;10;10;160</additional_attributes></element><element><id>UMLClass</id><coordinates><x>81</x><y>351</y><w>144</w><h>63</h></coordinates><panel_attributes>Évaluation d'une ligne
 --
 note
-commentaire</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>300</x><y>350</y><w>130</w><h>30</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;110;10</additional_attributes></element><element><id>UMLNote</id><coordinates><x>130</x><y>230</y><w>200</w><h>70</h></coordinates><panel_attributes>CI: Une évaluation d'une ligne se fait seulement pour celles qui contiennent des segments déjà visités par l'utilisateur 
+commentaire</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>216</x><y>369</y><w>117</w><h>27</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;110;10</additional_attributes></element><element><id>UMLNote</id><coordinates><x>63</x><y>270</y><w>180</w><h>72</h></coordinates><panel_attributes>CI: Une évaluation d'une ligne se fait seulement pour celles qui contiennent des segments déjà visités par l'utilisateur 
 bg=blue
-style=wordwrap</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>360</x><y>660</y><w>100</w><h>60</h></coordinates><panel_attributes>Type de voie
+style=wordwrap</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>270</x><y>648</y><w>90</w><h>54</h></coordinates><panel_attributes>Type de voie
 --
 __code__
-description</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>400</x><y>570</y><w>120</w><h>110</h></coordinates><panel_attributes>lt=-
+description</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>306</x><y>567</y><w>108</w><h>99</h></coordinates><panel_attributes>lt=-
 m1=*
 m2=1
-voies de type v</panel_attributes><additional_attributes>10;10;10;90</additional_attributes></element><element><id>UMLClass</id><coordinates><x>870</x><y>660</y><w>100</w><h>60</h></coordinates><panel_attributes>Type de station
+voies de type v</panel_attributes><additional_attributes>10;10;10;90</additional_attributes></element><element><id>UMLClass</id><coordinates><x>729</x><y>648</y><w>90</w><h>54</h></coordinates><panel_attributes>Type de station
 --
 __code__
-description</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>910</x><y>570</y><w>70</w><h>110</h></coordinates><panel_attributes>lt=-
+description</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>765</x><y>567</y><w>63</w><h>99</h></coordinates><panel_attributes>lt=-
 m1=*
 m2=1
-type v</panel_attributes><additional_attributes>10;10;10;90</additional_attributes></element><element><id>UMLClass</id><coordinates><x>870</x><y>280</y><w>100</w><h>60</h></coordinates><panel_attributes>Pays
+type v</panel_attributes><additional_attributes>10;10;10;90</additional_attributes></element><element><id>UMLClass</id><coordinates><x>909</x><y>630</y><w>90</w><h>54</h></coordinates><panel_attributes>Pays
 --
 __code iso__
 nom
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>910</x><y>330</y><w>90</w><h>120</h></coordinates><panel_attributes>lt=-
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>765</x><y>360</y><w>225</w><h>99</h></coordinates><panel_attributes>lt=-
 m1=*
 m2=1
-localisé ^</panel_attributes><additional_attributes>10;100;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>450</x><y>540</y><w>430</w><h>50</h></coordinates><panel_attributes>lt=-
+localisé &gt;</panel_attributes><additional_attributes>10;90;10;20;230;20</additional_attributes></element><element><id>Relation</id><coordinates><x>351</x><y>540</y><w>387</w><h>45</h></coordinates><panel_attributes>lt=-
 m1=*
 m2=2
-bornée par &gt;</panel_attributes><additional_attributes>10;20;410;20</additional_attributes></element></diagram>
+bornée par &gt;</panel_attributes><additional_attributes>10;20;410;20</additional_attributes></element><element><id>UMLClass</id><coordinates><x>81</x><y>207</y><w>108</w><h>54</h></coordinates><panel_attributes>Groupe
+--
+_id_
+nom</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLNote</id><coordinates><x>594</x><y>387</y><w>153</w><h>45</h></coordinates><panel_attributes>CI: Les deux stations qui bornent un segment doivent être consécutives
+style=wordwrap
+bg=blue</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>180</x><y>216</y><w>108</w><h>45</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=1..*
+&lt; membre</panel_attributes><additional_attributes>10;20;100;20</additional_attributes></element><element><id>UMLClass</id><coordinates><x>972</x><y>360</y><w>90</w><h>54</h></coordinates><panel_attributes>Commune
+--
+__code__
+nom
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1035</x><y>630</y><w>90</w><h>54</h></coordinates><panel_attributes>Canton
+--
+__code iso__
+nom
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>945</x><y>540</y><w>81</w><h>108</h></coordinates><panel_attributes>lt=-
+m1=*
+m2=1
+localisé v</panel_attributes><additional_attributes>10;10;10;100</additional_attributes></element><element><id>Relation</id><coordinates><x>1071</x><y>540</y><w>81</w><h>108</h></coordinates><panel_attributes>lt=-
+m1=*
+m2=1
+localisé v</panel_attributes><additional_attributes>10;10;10;100</additional_attributes></element><element><id>UMLNote</id><coordinates><x>441</x><y>576</y><w>153</w><h>45</h></coordinates><panel_attributes>CI: Deux stations de degré 1 parmi la chaîne complète de segments
+style=wordwrap
+bg=blue</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLNote</id><coordinates><x>441</x><y>630</y><w>153</w><h>36</h></coordinates><panel_attributes>CI: Les segments d'une ligne doivent se succéder
+style=wordwrap
+bg=blue</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1008</x><y>405</y><w>108</w><h>108</h></coordinates><panel_attributes>lt=&lt;&lt;-
+cpos=23,-2
+{totale, disjoint}
+</panel_attributes><additional_attributes>10;10;10;60;80;60;80;100</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1026</x><y>495</y><w>117</w><h>54</h></coordinates><panel_attributes>Commune Suisse
+--
+npa</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>891</x><y>495</y><w>117</w><h>54</h></coordinates><panel_attributes>Commune Étrangère
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>945</x><y>405</y><w>90</w><h>108</h></coordinates><panel_attributes>lt=&lt;&lt;-
+</panel_attributes><additional_attributes>80;10;80;60;10;60;10;100</additional_attributes></element></diagram>
