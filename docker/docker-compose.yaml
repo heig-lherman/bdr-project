@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+  database:
+    container_name: choochoo_database
+    image: postgis/postgis:16-3.4-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: choochoo
+      POSTGRES_PASSWORD: choochoo
+    ports:
+      - 5432:5432

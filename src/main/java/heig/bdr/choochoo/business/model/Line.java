@@ -1,20 +1,12 @@
 package heig.bdr.choochoo.business.model;
 
-import heig.bdr.choochoo.business.model.reference.StationType;
 import heig.bdr.choochoo.business.model.reference.TrackType;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.ForeignKey;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
-import java.util.Set;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
+
+import java.util.Set;
 
 @Entity
 @Table(name = "line")
@@ -30,8 +22,8 @@ public class Line {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, optional = false)
-    @JoinColumn(name = "track_type_fk", foreignKey = @ForeignKey(name = "fk_line__track_type"), nullable = false)
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinColumn(name = "track_type_fk", foreignKey = @ForeignKey(name = "fk_line__track_type"))
     private TrackType trackType;
 
     @ManyToOne(cascade = {CascadeType.ALL}, optional = false)

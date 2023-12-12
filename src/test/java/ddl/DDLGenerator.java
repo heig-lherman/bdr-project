@@ -12,7 +12,7 @@ import heig.bdr.choochoo.business.model.locality.Locality;
 import heig.bdr.choochoo.business.model.locality.SwissLocality;
 import heig.bdr.choochoo.business.model.reference.StationType;
 import heig.bdr.choochoo.business.model.reference.TrackType;
-import heig.bdr.choochoo.business.model.user.Group;
+import heig.bdr.choochoo.business.model.user.Team;
 import heig.bdr.choochoo.business.model.user.User;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -42,7 +42,7 @@ public class DDLGenerator {
                 StationType.class,
                 TrackType.class,
                 User.class,
-                Group.class,
+                Team.class,
                 Journey.class,
                 Line.class,
                 Segment.class,

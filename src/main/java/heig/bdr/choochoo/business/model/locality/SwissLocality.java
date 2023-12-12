@@ -1,11 +1,6 @@
 package heig.bdr.choochoo.business.model.locality;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.ForeignKey;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.PrimaryKeyJoinColumn;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
@@ -18,7 +13,10 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 public class SwissLocality extends Locality {
 
-    @ManyToOne(optional = false)
+    @Column(name = "code", nullable = false)
+    private Integer fsoNumber;
+
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, optional = false)
     @JoinColumn(name = "canton_fk", foreignKey = @ForeignKey(name = "fk_swsslocl__canton"), nullable = false)
     private Canton canton;
 }

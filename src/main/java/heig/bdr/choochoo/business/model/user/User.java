@@ -39,9 +39,9 @@ public class User {
     @Column(name = "last_name", nullable = false)
     private String lastName;
 
-    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, optional = false)
-    @JoinColumn(name = "group_fk", foreignKey = @ForeignKey(name = "fk_user__group"), nullable = false)
-    private Group group;
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinColumn(name = "team_fk", foreignKey = @ForeignKey(name = "fk_user__team"))
+    private Team team;
 
     @OneToMany(mappedBy = "user")
     private Set<Journey> journeys;

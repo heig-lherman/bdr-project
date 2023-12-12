@@ -1,15 +1,6 @@
 package heig.bdr.choochoo.business.model;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.ForeignKey;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
@@ -27,7 +18,7 @@ public class Segment {
     private Long id;
 
     @Column(name = "distance", nullable = false)
-    private Float distance;
+    private Double distance;
 
     @ManyToOne(cascade = {CascadeType.ALL}, optional = false)
     @JoinColumn(name = "line_fk", foreignKey = @ForeignKey(name = "fk_segment__line"), nullable = false)

@@ -37,7 +37,9 @@ dependencies {
     testAnnotationProcessor("org.projectlombok:lombok")
 
     // database
+    implementation("org.springframework.boot:spring-boot-starter-jdbc")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    implementation("org.hibernate.orm:hibernate-spatial")
     testImplementation("org.hibernate.orm:hibernate-ant")
     runtimeOnly("org.postgresql:postgresql")
     implementation("org.liquibase:liquibase-core")
@@ -50,6 +52,9 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-rest")
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.boot:spring-boot-starter-web")
+
+    // Batches
+    implementation("org.springframework.boot:spring-boot-starter-batch")
 
     // testing
     testImplementation("org.springframework.boot:spring-boot-starter-test")
