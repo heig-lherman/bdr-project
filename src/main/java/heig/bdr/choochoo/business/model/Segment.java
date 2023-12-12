@@ -15,7 +15,7 @@ import lombok.Setter;
 import lombok.experimental.Accessors;
 
 @Entity
-@Table(name = "station")
+@Table(name = "segment")
 @Getter
 @Setter
 @Accessors(chain = true)
