@@ -1,28 +1,20 @@
 package ddl;
 
-import heig.bdr.choochoo.business.model.Journey;
-import heig.bdr.choochoo.business.model.Line;
-import heig.bdr.choochoo.business.model.LineAssessment;
-import heig.bdr.choochoo.business.model.Segment;
-import heig.bdr.choochoo.business.model.Station;
-import heig.bdr.choochoo.business.model.locality.Canton;
-import heig.bdr.choochoo.business.model.locality.Country;
-import heig.bdr.choochoo.business.model.locality.ForeignLocality;
-import heig.bdr.choochoo.business.model.locality.Locality;
-import heig.bdr.choochoo.business.model.locality.SwissLocality;
+import heig.bdr.choochoo.business.model.*;
+import heig.bdr.choochoo.business.model.locality.*;
 import heig.bdr.choochoo.business.model.reference.StationType;
 import heig.bdr.choochoo.business.model.reference.TrackType;
 import heig.bdr.choochoo.business.model.user.Team;
 import heig.bdr.choochoo.business.model.user.User;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.EnumSet;
-import lombok.SneakyThrows;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.tool.hbm2ddl.SchemaExport;
 import org.hibernate.tool.schema.TargetType;
 import org.junit.jupiter.api.Test;
+
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.EnumSet;
 
 public class DDLGenerator {
 
@@ -51,15 +43,20 @@ public class DDLGenerator {
         ).buildMetadata();
 
         deleteFile("sql/ddl/create.sql");
+        deleteFile("sql/ddl/drop.sql");
 
         var schemaExport = new SchemaExport();
         schemaExport.setFormat(true);
         schemaExport.setOutputFile("sql/ddl/create.sql");
         schemaExport.createOnly(EnumSet.of(TargetType.SCRIPT), metadata);
+        schemaExport.setOutputFile("sql/ddl/drop.sql");
+        schemaExport.drop(EnumSet.of(TargetType.SCRIPT), metadata);
     }
 
-    @SneakyThrows
     private void deleteFile(String path) {
-        Files.delete(Path.of(path));
+        try {
+            Files.delete(Path.of(path));
+        } catch (Exception ignored) {
+        }
     }
 }
