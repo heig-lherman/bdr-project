@@ -1,4 +1,4 @@
--- Procedure 1 : duplicate a journey when a user travels with a  group
+-- Procedure 01: duplicate a journey when a user travels with a  group
 CREATE OR REPLACE PROCEDURE clone_journey_for_team(p_user_email varchar, p_journey_id bigint)
     LANGUAGE plpgsql AS
 $$
