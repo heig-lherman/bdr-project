@@ -6,6 +6,7 @@ import heig.bdr.choochoo.business.model.reference.StationType;
 import heig.bdr.choochoo.business.model.reference.TrackType;
 import heig.bdr.choochoo.business.model.user.Team;
 import heig.bdr.choochoo.business.model.user.User;
+import heig.bdr.choochoo.business.model.user.UserToken;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.tool.hbm2ddl.SchemaExport;
@@ -34,6 +35,7 @@ public class DDLGenerator {
                 StationType.class,
                 TrackType.class,
                 User.class,
+                UserToken.class,
                 Team.class,
                 Journey.class,
                 Line.class,

@@ -113,6 +113,16 @@
         primary key (email)
     );
 
+    create table traveller_token (
+        id bigserial not null,
+        expired boolean not null,
+        refresh_token varchar(255) not null,
+        revoked boolean not null,
+        token varchar(255) not null,
+        traveller_fk varchar(255) not null,
+        primary key (id)
+    );
+
     create index idx_station__name 
        on station (name);
 
@@ -208,3 +218,8 @@
        add constraint fk_user__team 
        foreign key (team_fk) 
        references team;
+
+    alter table if exists traveller_token 
+       add constraint fk_token__user 
+       foreign key (traveller_fk) 
+       references traveller;

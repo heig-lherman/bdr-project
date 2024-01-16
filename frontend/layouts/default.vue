@@ -2,23 +2,21 @@
   <v-app id="inspire">
     <v-app-bar flat>
       <v-container class="mx-auto d-flex align-center justify-center">
-        <v-app-bar-title>
-          <div class="tw-flex tw-items-center">
-            <v-icon
-                icon="i-ph:train-simple-duotone"
-                class="me-4 "
-                color="grey-darken-1"
-                size="32"
-            />
+        <nuxt-link to="/" class="d-flex align-center me-4">
+          <v-icon
+              icon="i-ph:train-simple-duotone"
+              class="me-4"
+              color="grey-lighten-1"
+              size="32"
+          />
 
-            <b>Choo</b>Choo
-          </div>
-        </v-app-bar-title>
+          <b>Choo</b>Choo
+        </nuxt-link>
 
         <v-btn
             v-for="link in links"
-            :key="link"
-            :text="link"
+            :key="link.path"
+            :text="link.label"
             variant="text"
         ></v-btn>
 
@@ -75,5 +73,9 @@
     </v-main>
   </v-app>
 </template>
+
 <script setup lang="ts">
+const links = [
+  { path: '/', label: 'Home' }
+];
 </script>

@@ -53,6 +53,9 @@
     alter table if exists traveller 
        drop constraint if exists fk_user__team;
 
+    alter table if exists traveller_token 
+       drop constraint if exists fk_token__user;
+
     drop table if exists canton cascade;
 
     drop table if exists country cascade;
@@ -82,3 +85,5 @@
     drop table if exists track_type cascade;
 
     drop table if exists traveller cascade;
+
+    drop table if exists traveller_token cascade;

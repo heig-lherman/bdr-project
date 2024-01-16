@@ -11,7 +11,7 @@ group = "heig.bdr"
 version = "0.0.1-SNAPSHOT"
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_21
+    sourceCompatibility = JavaVersion.VERSION_17
 }
 
 configurations {
@@ -51,10 +51,17 @@ dependencies {
     // API
     implementation("org.springframework.boot:spring-boot-starter-data-rest")
     implementation("org.springframework.boot:spring-boot-starter-security")
+    implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("org.springframework.boot:spring-boot-starter-web")
 
     // Batches
     implementation("org.springframework.boot:spring-boot-starter-batch")
+
+    // Security
+    implementation("org.bouncycastle:bcprov-jdk18on:1.77")
+    implementation("io.jsonwebtoken:jjwt-api:0.12.3")
+    runtimeOnly("io.jsonwebtoken:jjwt-impl:0.12.3")
+    runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.12.3")
 
     // testing
     testImplementation("org.springframework.boot:spring-boot-starter-test")
