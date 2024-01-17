@@ -54,6 +54,12 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("org.springframework.boot:spring-boot-starter-web")
 
+    // ViewModel Mapping
+    implementation("org.mapstruct:mapstruct:1.5.5.Final")
+    implementation("org.mapstruct.extensions.spring:mapstruct-spring-annotations:1.1.1")
+    annotationProcessor("org.mapstruct:mapstruct-processor:1.5.5.Final")
+    annotationProcessor("org.mapstruct.extensions.spring:mapstruct-spring-extensions:1.1.1")
+
     // Batches
     implementation("org.springframework.boot:spring-boot-starter-batch")
 
@@ -81,6 +87,13 @@ tasks {
     asciidoctor {
         project.property("snippetsDir")!!.let { inputs.dir(it) }
         dependsOn(test)
+    }
+
+    compileJava {
+        options.compilerArgs.addAll(listOf(
+                "-Amapstruct.verbose=true",
+                "-Amapstruct.defaultComponentModel=spring"
+        ))
     }
 }
 

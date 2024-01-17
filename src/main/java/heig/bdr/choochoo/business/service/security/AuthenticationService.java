@@ -31,27 +31,26 @@ public class AuthenticationService {
     public AuthenticationViewModel login(LoginRequestBody request) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
-                        request.getEmail(),
+                        request.getUsername(),
                         request.getPassword()
                 )
         );
 
         var user = userRepository
-                .findByEmail(request.getEmail())
-                .orElseThrow(() -> new UsernameNotFoundException("User with email [" + request.getEmail() + "] not found"));
+                .findByEmail(request.getUsername())
+                .orElseThrow(() -> new UsernameNotFoundException("User with email [" + request.getUsername() + "] not found"));
 
         revokeAllUserTokens(user);
 
         return saveUserTokenAndReturnAuthResponse(user);
     }
 
-    public AuthenticationViewModel register(RegisterRequestBody request) {
-        if (userRepository.existsByEmail(request.getEmail())) {
+    public void register(RegisterRequestBody request) {
+        if (userRepository.existsByEmail(request.getUsername())) {
             throw new UsernameAlreadyExistsException();
         }
 
-        User user = userRepository.save(buildUser(request));
-        return saveUserTokenAndReturnAuthResponse(user);
+        userRepository.save(buildUser(request));
     }
 
     public AuthenticationViewModel refreshToken(RefreshTokenRequestBody request) {
@@ -80,8 +79,8 @@ public class AuthenticationService {
 
     private User buildUser(RegisterRequestBody request) {
         return new User()
-                .setEmail(request.getEmail())
-                .setUsername(request.getUsername())
+                .setEmail(request.getUsername())
+                .setUsername(request.getDisplayName())
                 .setPassword(passwordEncoder.encode(request.getPassword()))
                 .setFirstName(request.getFirstName())
                 .setLastName(request.getLastName());

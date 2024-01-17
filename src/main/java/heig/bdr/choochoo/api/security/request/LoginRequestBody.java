@@ -11,7 +11,7 @@ import lombok.extern.jackson.Jacksonized;
 @Jacksonized
 public class LoginRequestBody {
 
-    private final @NotBlank String email;
+    private final @NotBlank String username;
     @ToString.Exclude
     private final @NotBlank String password;
 }

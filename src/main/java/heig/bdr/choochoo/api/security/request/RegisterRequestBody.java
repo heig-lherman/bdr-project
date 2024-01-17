@@ -12,8 +12,8 @@ import lombok.extern.jackson.Jacksonized;
 @Jacksonized
 public class RegisterRequestBody {
 
-    private final @NotBlank @Email String email;
-    private final @NotBlank String username;
+    private final @NotBlank @Email String username;
+    private final @NotBlank String displayName;
     private final @NotBlank String firstName;
     private final @NotBlank String lastName;
     @ToString.Exclude
