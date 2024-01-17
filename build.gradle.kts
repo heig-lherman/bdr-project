@@ -49,7 +49,7 @@ dependencies {
     implementation("org.locationtech.jts:jts-core:1.19.0")
 
     // API
-    implementation("org.springframework.boot:spring-boot-starter-data-rest")
+    // implementation("org.springframework.boot:spring-boot-starter-data-rest")
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("org.springframework.boot:spring-boot-starter-web")
@@ -59,6 +59,9 @@ dependencies {
     implementation("org.mapstruct.extensions.spring:mapstruct-spring-annotations:1.1.1")
     annotationProcessor("org.mapstruct:mapstruct-processor:1.5.5.Final")
     annotationProcessor("org.mapstruct.extensions.spring:mapstruct-spring-extensions:1.1.1")
+
+    // OpenAPI
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.3.0")
 
     // Batches
     implementation("org.springframework.boot:spring-boot-starter-batch")

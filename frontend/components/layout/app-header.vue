@@ -60,7 +60,9 @@
 <script setup lang="ts">
 const links = [
   {path: '/', label: 'Home'},
-  {path: '/teams', label: 'Teams'}
+  {path: '/teams', label: 'Teams'},
+  {path: '/journeys', label: 'Journeys'},
+  {path: '/reviews', label: 'Reviews'},
 ];
 
 const {data, status, signOut} = useAuth();

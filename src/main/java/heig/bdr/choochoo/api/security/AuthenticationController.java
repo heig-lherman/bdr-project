@@ -8,15 +8,16 @@ import heig.bdr.choochoo.api.security.request.RefreshTokenRequestBody;
 import heig.bdr.choochoo.api.security.request.RegisterRequestBody;
 import heig.bdr.choochoo.business.service.security.AuthenticationService;
 import heig.bdr.choochoo.security.UserSecurityGetter;
-import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/v1/auth")
+@RequestMapping(path = "/v1/auth", produces = MediaType.APPLICATION_JSON_VALUE)
 @RequiredArgsConstructor
 public class AuthenticationController {
 
@@ -24,7 +25,7 @@ public class AuthenticationController {
     private final UserMapper userMapper;
 
     @GetMapping("/@me")
-    @Transactional(rollbackOn = Throwable.class)
+    @Transactional(rollbackFor = Throwable.class)
     public ResponseEntity<UserViewModel> getUser() {
         return ResponseEntity.ok(userMapper.toViewModel(
                 UserSecurityGetter.getAuthenticatedUser()
@@ -32,7 +33,7 @@ public class AuthenticationController {
     }
 
     @PostMapping("/login")
-    @Transactional(rollbackOn = Throwable.class)
+    @Transactional(rollbackFor = Throwable.class)
     public ResponseEntity<AuthenticationViewModel> login(
             @Valid @RequestBody LoginRequestBody request
     ) {
@@ -42,7 +43,7 @@ public class AuthenticationController {
     }
 
     @PostMapping("/register")
-    @Transactional(rollbackOn = Throwable.class)
+    @Transactional(rollbackFor = Throwable.class)
     public ResponseEntity<Void> register(
             @Valid @RequestBody RegisterRequestBody request
     ) {
@@ -51,7 +52,7 @@ public class AuthenticationController {
     }
 
     @PostMapping("/refresh-token")
-    @Transactional(rollbackOn = Throwable.class)
+    @Transactional(rollbackFor = Throwable.class)
     public ResponseEntity<AuthenticationViewModel> refreshToken(
             @Valid @RequestBody RefreshTokenRequestBody request
     ) {

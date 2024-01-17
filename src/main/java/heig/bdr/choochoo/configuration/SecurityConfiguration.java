@@ -93,8 +93,9 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(
                         authorize -> authorize
                                 .requestMatchers(HttpMethod.OPTIONS).permitAll()
-                                .requestMatchers("/api/v1/auth/@me").authenticated()
-                                .requestMatchers("/api/v1/auth/**").permitAll()
+                                .requestMatchers("/v1/auth/@me").authenticated()
+                                .requestMatchers("/v1/auth/**").permitAll()
+                                .requestMatchers("/swagger-ui/**", "/swagger-ui.html", "/api-docs", "/api-docs/**").permitAll()
                                 .anyRequest().authenticated()
                 )
                 .sessionManagement(

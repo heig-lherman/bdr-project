@@ -3,9 +3,7 @@
     <LayoutAppHeader></LayoutAppHeader>
 
     <v-main>
-      <v-container>
-        <slot/>
-      </v-container>
+      <slot/>
     </v-main>
   </v-app>
 </template>

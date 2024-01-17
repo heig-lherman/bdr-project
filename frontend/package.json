@@ -12,6 +12,8 @@
   "dependencies": {
     "jsonwebtoken": "^9.0.2",
     "vee-validate": "^4.12.4",
+    "vuetify": "^3.4.10",
+    "vuetify-sonner": "^0.3.12",
     "zod": "^3.22.4"
   },
   "devDependencies": {
@@ -27,6 +29,7 @@
     "@vee-validate/zod": "^4.12.4",
     "@vueuse/nuxt": "^10.7.2",
     "nuxt": "^3.9.3",
+    "nuxt-open-fetch": "^0.4.2",
     "vue": "^3.4.14",
     "vue-router": "^4.2.5",
     "vuetify-nuxt-module": "^0.10.1"

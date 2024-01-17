@@ -6,8 +6,15 @@ export default defineNuxtConfig({
         '@unocss/nuxt',
         '@vee-validate/nuxt',
         '@vueuse/nuxt',
+        'nuxt-open-fetch',
         'vuetify-nuxt-module',
     ],
+    build: {
+      transpile: [
+          'jsonwebtoken',
+          'vue-sonner'
+      ]
+    },
     app: {
         head: {
             charset: 'utf-8',
@@ -61,6 +68,15 @@ export default defineNuxtConfig({
             }
         }
     },
+    openFetch: {
+        clients: {
+            default: {
+                baseURL: `${process.env.API_URL}/api`,
+                schema: `${process.env.API_URL}/api/api-docs`
+            },
+        },
+        disablePlugin: true,
+    },
     runtimeConfig: {
         public: {
             baseURL: `${process.env.API_URL}/api/v1`,
@@ -69,3 +85,4 @@ export default defineNuxtConfig({
     devtools: {enabled: true},
     ssr: false,
 });
+console.log(`${process.env.API_URL}/v3/api-docs`);

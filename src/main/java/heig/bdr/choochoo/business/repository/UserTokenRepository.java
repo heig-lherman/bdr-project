@@ -9,6 +9,16 @@ import java.util.Optional;
 
 public interface UserTokenRepository extends JpaRepository<UserToken, Long> {
 
+    @Query(
+            value = """
+                    SELECT *
+                    FROM traveller_token
+                    WHERE token = ?1
+                      AND expired = false
+                      AND revoked = false
+                     """,
+            nativeQuery = true
+    )
     Optional<UserToken> findByToken(String token);
 
     @Query(
