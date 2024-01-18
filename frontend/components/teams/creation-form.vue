@@ -41,10 +41,10 @@ const {handleSubmit} = useForm({
 
 const name = useField('name', validationSchema);
 
-const onSubmit = handleSubmit(async (values) => {
+const onSubmit = handleSubmit(async (body) => {
   await $defaultFetch('/v1/teams', {
     method: 'POST',
-    body: JSON.stringify(values),
+    body,
   }).then((result) => {
     $toast.success('Team created');
     emit('create', result);

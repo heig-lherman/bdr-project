@@ -18,8 +18,8 @@
           <TeamsCreationForm
             @create="() => {
               createDialog = false;
-              table?.refresh?.();
               getSession();
+              $refs.table.$.exposed.refresh();
             }"
           />
         </v-card-text>
@@ -37,9 +37,9 @@
 
   <v-sheet rounded="lg" elevation="4">
     <TeamsSimpleTable
+        ref="table"
         class="mt-4"
         :current-team="data.teamId"
-        ref="table"
     />
   </v-sheet>
 </template>
@@ -54,7 +54,5 @@ useHead({
 const {data, getSession} = useAuth();
 
 const inTeam = computed(() => !!data.value?.teamId);
-
 const createDialog = ref(false);
-const table = ref<InstanceType<typeof TeamsSimpleTable>>(null);
 </script>

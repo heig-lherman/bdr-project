@@ -65,10 +65,6 @@
 <script setup lang="ts">
 import * as zod from 'zod';
 
-useHead({
-  title: 'Sign-in'
-});
-
 definePageMeta({
   layout: 'login',
   auth: {
@@ -76,7 +72,11 @@ definePageMeta({
     navigateAuthenticatedTo: '/'
   }
 });
+useHead({
+  title: 'Sign-in'
+});
 
+const {$toast} = useNuxtApp();
 const {signIn} = useAuth();
 
 const validationSchema = toTypedSchema(zod.object({
@@ -93,5 +93,7 @@ const password = useField('password', validationSchema);
 
 const onSubmit = handleSubmit(async (values) => signIn(values, {
   callbackUrl: '/',
+}).catch(() => {
+  $toast.error('Login failed', { description: 'An error occurred.' });
 }));
 </script>

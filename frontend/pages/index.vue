@@ -28,7 +28,7 @@
 
       <div class="map-cover rounded-lg py-8 px-6">
         <h1 class="text-h4 font-weight-black text-blue-accent-1">Share your journeys with others</h1>
-        <h3 class="text-h5 font-weight-light">And complete your coverage</h3>
+        <h3 class="text-h5 font-weight-light">So far, users have travelled <strong>{{((totalDistance?.value ?? 0) / 1000).toFixed(2)}}km</strong></h3>
       </div>
 
     </div>
@@ -60,6 +60,7 @@ import { MapboxOverlay as DeckOverlay } from '@deck.gl/mapbox/typed';
 import { GeoJsonLayer } from '@deck.gl/layers/typed';
 import type { Feature, MultiLineString } from 'geojson';
 import type { Color } from '@deck.gl/core/typed';
+import { useDefaultFetch } from '#imports';
 
 definePageMeta({
   layout: 'fluid',
@@ -79,6 +80,8 @@ const {data: heatmapGeo} = useLazyDefaultFetch('/v1/geography/global/heatmap', {
     Accept: 'application/geo+json',
   }
 });
+
+const {data: totalDistance} = useDefaultFetch('/v1/geography/global/distance');
 
 const map = useMap();
 watchOnce(toRef(map, 'isMounted'), () => {
@@ -134,7 +137,7 @@ const currentYear = new Date().getFullYear();
   right: 0;
   bottom: 0;
   z-index: 0;
-  background: linear-gradient(to right bottom, rgba(0, 0, 0, 0.125), rgba(0, 0, 0, 0.5));
+  background: linear-gradient(to right bottom, rgba(0, 0, 0, 0.125), rgba(0, 0, 0, 0.75));
 }
 
 .image-cover--text {

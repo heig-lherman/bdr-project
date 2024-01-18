@@ -1,0 +1,15 @@
+meta {
+  name: Total Distance
+  type: http
+  seq: 2
+}
+
+get {
+  url: http://localhost:8080/api/v1/geography/global/distance
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJsb2ljLmhlcm1hbkBoZWlnLXZkLmNoIiwiaWF0IjoxNzA1NjE1OTM3LCJleHAiOjE3MDU2MTk1Mzd9.Pgdu2jqGd7m-hMwL8Kmv-G4YpsEyEqVOKGja7VhbzoQnZXemmjO1GXez5PtgcDa3v5wSqsj6JmY5cHI05SIZpA
+}

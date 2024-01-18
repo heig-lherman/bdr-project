@@ -81,6 +81,6 @@ async function onLeaveTeam() {
 }
 
 defineExpose({
-  refresh,
+  refresh: () => refresh(),
 })
 </script>

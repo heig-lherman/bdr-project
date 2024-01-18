@@ -29,4 +29,16 @@ public interface HeatmapRepository extends Repository<HeatmapView, Long> {
                     """
     )
     List<HeatmapView> getUserHeatmap(String userEmail);
+
+    @Query(
+            nativeQuery = true,
+            value = """
+                    SELECT SUM(distance)
+                    FROM traveller
+                             JOIN journey j ON traveller.email = j.user_fk
+                             JOIN journey_segment js ON j.id = js.journey_fk
+                             JOIN segment s ON js.segment_fk = s.id;
+                    """
+    )
+    Long getTotalCoveredDistance();
 }

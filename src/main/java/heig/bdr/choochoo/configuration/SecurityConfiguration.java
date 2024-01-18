@@ -96,7 +96,7 @@ public class SecurityConfiguration {
                                 .requestMatchers("/v1/auth/@me").authenticated()
                                 .requestMatchers("/v1/auth/**").permitAll()
                                 .requestMatchers("/swagger-ui/**", "/swagger-ui.html", "/api-docs", "/api-docs/**").permitAll()
-                                .requestMatchers("/v1/geography/global/heatmap").permitAll()
+                                .requestMatchers("/v1/geography/global/heatmap", "/v1/geography/global/distance").permitAll()
                                 .anyRequest().authenticated()
                 )
                 .sessionManagement(
