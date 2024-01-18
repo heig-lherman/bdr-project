@@ -47,6 +47,8 @@ dependencies {
     // geospatial data
     implementation("org.n52.jackson:jackson-datatype-jts:1.2.10")
     implementation("org.locationtech.jts:jts-core:1.19.0")
+    implementation("org.geolatte:geolatte-geom:1.9.1")
+    implementation("org.geolatte:geolatte-geojson:1.9.1")
 
     // API
     // implementation("org.springframework.boot:spring-boot-starter-data-rest")

@@ -48,6 +48,10 @@
         </div>
       </v-container>
     </div>
+
+    <v-footer>
+      &copy; {{ currentYear }} - Project ChooChoo
+    </v-footer>
   </div>
 </template>
 
@@ -64,6 +68,7 @@ useHead({
 })
 
 const {public: { maps: { styleUrl } }} = useRuntimeConfig();
+const currentYear = new Date().getFullYear();
 </script>
 
 <style scoped>

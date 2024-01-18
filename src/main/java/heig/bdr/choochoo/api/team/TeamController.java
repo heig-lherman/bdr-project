@@ -6,15 +6,19 @@ import heig.bdr.choochoo.api.team.model.TeamListViewModel;
 import heig.bdr.choochoo.api.team.request.TeamRequestBody;
 import heig.bdr.choochoo.business.repository.TeamRepository;
 import heig.bdr.choochoo.business.repository.UserRepository;
+import heig.bdr.choochoo.security.UserSecurityGetter;
 import jakarta.validation.Valid;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(path = "/v1/teams", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -40,7 +44,7 @@ public class TeamController {
     @PostMapping("/{teamId}/join")
     @Transactional
     public ResponseEntity<Void> joinTeam(@PathVariable Long teamId) {
-        var email = SecurityContextHolder.getContext().getAuthentication().getName();
+        var email = UserSecurityGetter.getAuthenticatedUser().getEmail();
         userRepository.joinTeam(email, teamId);
         return ResponseEntity.accepted().build();
     }
@@ -48,7 +52,7 @@ public class TeamController {
     @PostMapping("/leave")
     @Transactional
     public ResponseEntity<Void> leaveTeam() {
-        var email = SecurityContextHolder.getContext().getAuthentication().getName();
+        var email = UserSecurityGetter.getAuthenticatedUser().getEmail();
         userRepository.leaveTeam(email);
         return ResponseEntity.accepted().build();
     }
@@ -57,7 +61,7 @@ public class TeamController {
     @Transactional
     public TeamDetailViewModel createTeam(@Valid @RequestBody TeamRequestBody name) {
         var team = teamRepository.create(name.getName());
-        var email = SecurityContextHolder.getContext().getAuthentication().getName();
+        var email = UserSecurityGetter.getAuthenticatedUser().getEmail();
         userRepository.joinTeam(email, team.getId());
         return teamDetailMapper.toViewModel(team);
     }

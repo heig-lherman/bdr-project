@@ -10,6 +10,8 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@deck.gl/core": "^8.9.33",
+    "@deck.gl/layers": "^8.9.33",
     "jsonwebtoken": "^9.0.2",
     "maplibre-gl": "^3.6.2",
     "mitt": "^3.0.1",
