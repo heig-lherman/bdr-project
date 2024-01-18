@@ -45,7 +45,7 @@ dependencies {
     implementation("org.liquibase:liquibase-core")
 
     // geospatial data
-    implementation("com.bedatadriven:jackson-datatype-jts:2.2")
+    implementation("org.n52.jackson:jackson-datatype-jts:1.2.10")
     implementation("org.locationtech.jts:jts-core:1.19.0")
 
     // API

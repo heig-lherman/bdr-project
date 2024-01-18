@@ -61,6 +61,7 @@
     create table segment (
         id bigserial not null,
         distance float(53) not null,
+        geometry geometry not null,
         line_fk integer not null,
         station_end_fk bigint not null,
         station_start_fk bigint not null,

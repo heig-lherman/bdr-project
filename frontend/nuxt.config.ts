@@ -10,10 +10,10 @@ export default defineNuxtConfig({
         'vuetify-nuxt-module',
     ],
     build: {
-      transpile: [
-          'jsonwebtoken',
-          'vue-sonner'
-      ]
+        transpile: [
+            'jsonwebtoken',
+            'vue-sonner',
+        ]
     },
     app: {
         head: {
@@ -80,9 +80,12 @@ export default defineNuxtConfig({
     runtimeConfig: {
         public: {
             baseURL: `${process.env.API_URL}/api/v1`,
+            maps: {
+                geopsKey: process.env.GEOPS_API_KEY,
+                styleUrl: `https://maps.geops.io/styles/base_dark_v2/style.json?key=${process.env.GEOPS_API_KEY}`
+            },
         },
     },
     devtools: {enabled: true},
     ssr: false,
 });
-console.log(`${process.env.API_URL}/v3/api-docs`);

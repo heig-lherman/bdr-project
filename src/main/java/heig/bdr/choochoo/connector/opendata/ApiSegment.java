@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
+import org.locationtech.jts.geom.LineString;
 
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
@@ -39,8 +41,17 @@ public class ApiSegment {
     @JsonProperty("bp_end_bez")
     private String stationEndName;
 
+    @ToString.Exclude
+    @JsonProperty("geo_shape")
+    private GeoShape geoShape;
+
     @JsonIgnore
     public double getDistance() {
         return kmTo - kmFrom;
+    }
+
+    public record GeoShape(
+            @JsonProperty("geometry") LineString geometry
+    ) {
     }
 }

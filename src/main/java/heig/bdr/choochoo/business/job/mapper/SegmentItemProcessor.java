@@ -43,6 +43,7 @@ public class SegmentItemProcessor implements ItemProcessor<ApiSegment, Segment> 
                 .setDistance(item.getDistance())
                 .setStationStart(stationStart)
                 .setStationEnd(stationEnd)
-                .setLine(line);
+                .setLine(line)
+                .setGeometry(item.getGeoShape().geometry());
     }
 }

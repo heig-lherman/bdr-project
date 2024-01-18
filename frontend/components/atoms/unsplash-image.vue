@@ -1,7 +1,7 @@
 <template>
   <v-img
       :lazy-src="img(src, { width: 10, quality: 70 })"
-      :src="img(src, { height, quality: 70 })"
+      :src="img(src, { height: height as number, quality: 70 })"
       :srcset="imgSrcset.srcset"
       :sizes="imgSrcset.sizes"
       :height="height"
@@ -18,7 +18,7 @@ const props = defineProps({
     required: true
   },
   height: {
-    type: Number,
+    type: [String, Number],
     default: 600
   }
 });
@@ -31,7 +31,7 @@ const imgSrcset = computed(() => img.getSizes(
       modifiers: {
         format: 'webp',
         quality: 70,
-        height: props.height
+        height: props.height as number
       }
     }
 ));

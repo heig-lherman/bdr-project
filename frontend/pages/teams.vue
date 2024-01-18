@@ -18,7 +18,7 @@
           <TeamsCreationForm
             @create="() => {
               createDialog = false;
-              table.refresh();
+              table?.refresh?.();
               getSession();
             }"
           />

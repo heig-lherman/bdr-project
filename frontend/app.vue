@@ -11,7 +11,7 @@
 </template>
 
 <script setup lang="ts">
-import { VSonner } from 'vuetify-sonner';
+import {VSonner} from 'vuetify-sonner';
 
 useHead({
   titleTemplate: (titleChunk) => titleChunk
@@ -21,6 +21,9 @@ useHead({
 </script>
 
 <style>
+@import "maplibre-gl/dist/maplibre-gl.css";
+@import "vue-maplibre-gl/dist/vue-maplibre-gl.css";
+
 [data-sonner-toast] {
   width: 100%;
 }

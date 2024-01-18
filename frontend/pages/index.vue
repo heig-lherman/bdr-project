@@ -2,7 +2,7 @@
   <div>
     <AtomsUnsplashImage
         src="https://images.unsplash.com/photo-1690403755220-d7702a39ea4a"
-        :height="600"
+        height="65dvh"
         cover
         class="position-relative"
     >
@@ -16,6 +16,24 @@
       </div>
       <div class="image-cover"></div>
     </AtomsUnsplashImage>
+
+    <div class="hero-section">
+      <mgl-map
+          :map-style="styleUrl"
+          :center="[8.226667, 46.801111]"
+          :zoom="7"
+          :interactive="false"
+          style="position: absolute; top: 0; bottom: 0; left: 0; right: 0;"
+      >
+      </mgl-map>
+
+      <div class="map-cover rounded-lg py-8 px-6">
+        <h1 class="text-h4 font-weight-black text-blue-accent-1">Share your journeys with others</h1>
+        <h3 class="text-h5 font-weight-light">And complete your coverage</h3>
+      </div>
+
+    </div>
+
     <div class="hero-section">
       <v-container class="h-100">
         <div class="d-flex w-100 h-100 align-center justify-center flex-column ga-12">
@@ -34,6 +52,8 @@
 </template>
 
 <script setup lang="ts">
+import {MglMap} from 'vue-maplibre-gl';
+
 definePageMeta({
   layout: 'fluid',
   auth: false,
@@ -42,11 +62,22 @@ definePageMeta({
 useHead({
   titleTemplate: 'Project ChooChoo'
 })
+
+const {public: { maps: { styleUrl } }} = useRuntimeConfig();
 </script>
 
 <style scoped>
 .hero-section {
-  height: 600px;
+  position: relative;
+  height: 70dvh;
+}
+
+.map-cover {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.5);
 }
 
 .image-cover {
