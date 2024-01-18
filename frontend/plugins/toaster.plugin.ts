@@ -4,7 +4,6 @@ import { toast } from 'vuetify-sonner';
 type Options = Parameters<typeof toast>[1]
 
 function createToastFunction(color: string, icon: string) {
-    console.log(color, icon);
     return function (text: string, options?: Options) {
         return toast(text, {
             prependIcon: icon,

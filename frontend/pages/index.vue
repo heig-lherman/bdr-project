@@ -19,13 +19,12 @@
 
     <div class="hero-section">
       <mgl-map
+          ref="map"
           :map-style="styleUrl"
           :center="[8.226667, 46.801111]"
-          :zoom="7"
+          :zoom="7.2"
           :interactive="false"
-          style="position: absolute; top: 0; bottom: 0; left: 0; right: 0;"
-      >
-      </mgl-map>
+      ></mgl-map>
 
       <div class="map-cover rounded-lg py-8 px-6">
         <h1 class="text-h4 font-weight-black text-blue-accent-1">Share your journeys with others</h1>
@@ -56,18 +55,61 @@
 </template>
 
 <script setup lang="ts">
-import {MglMap} from 'vue-maplibre-gl';
+import { MglMap, useMap } from 'vue-maplibre-gl';
+import { MapboxOverlay as DeckOverlay } from '@deck.gl/mapbox/typed';
+import { GeoJsonLayer } from '@deck.gl/layers/typed';
+import type { Feature, MultiLineString } from 'geojson';
+import type { Color } from '@deck.gl/core/typed';
 
 definePageMeta({
   layout: 'fluid',
   auth: false,
-})
-
+});
 useHead({
   titleTemplate: 'Project ChooChoo'
-})
+});
 
-const {public: { maps: { styleUrl } }} = useRuntimeConfig();
+const {public: {maps: {styleUrl}}} = useRuntimeConfig();
+
+const {data: heatmapGeo} = useLazyDefaultFetch('/v1/geography/global/heatmap', {
+  // query: {
+  //   random: true
+  // },
+  headers: {
+    Accept: 'application/geo+json',
+  }
+});
+
+const map = useMap();
+watchOnce(toRef(map, 'isMounted'), () => {
+  watchOnce(heatmapGeo, () => {
+    const overlay = new DeckOverlay({
+      layers: [
+        new GeoJsonLayer({
+          id: 'heatmap',
+          data: {
+            type: 'FeatureCollection',
+            features: toRaw(heatmapGeo.value) as Feature<MultiLineString>[],
+          },
+          pickable: false,
+          stroked: true,
+          extruded: true,
+          getLineColor: f => {
+            const p = f.properties?.percentage ?? 0;
+            return [255 * p, 128 * (1 - p), 255 * (1 - p), 170 + 80 * p] as Color;
+          },
+          getLineWidth: 10,
+          lineWidthScale: 50,
+          lineWidthMinPixels: 5,
+          getElevation: 30
+        }),
+      ]
+    });
+
+    map.map?.addControl(overlay as any);
+  });
+});
+
 const currentYear = new Date().getFullYear();
 </script>
 

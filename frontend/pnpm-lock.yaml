@@ -11,6 +11,9 @@ dependencies:
   '@deck.gl/layers':
     specifier: ^8.9.33
     version: 8.9.33(@deck.gl/core@8.9.33)(@loaders.gl/core@3.4.14)(@luma.gl/core@8.5.21)
+  '@deck.gl/mapbox':
+    specifier: ^8.9.33
+    version: 8.9.33(@deck.gl/core@8.9.33)
   jsonwebtoken:
     specifier: ^9.0.2
     version: 9.0.2
@@ -513,6 +516,16 @@ packages:
       '@math.gl/polygon': 3.6.3
       '@math.gl/web-mercator': 3.6.3
       earcut: 2.2.4
+    dev: false
+
+  /@deck.gl/mapbox@8.9.33(@deck.gl/core@8.9.33):
+    resolution: {integrity: sha512-TwKZzr5+ynazn8uOKTZVjY180ZXBBiciOGSq2FEg+XfsyHbC/IScACGmURYbNuotJP+427UTAWIG51KO50GOlQ==}
+    peerDependencies:
+      '@deck.gl/core': ^8.0.0
+    dependencies:
+      '@babel/runtime': 7.23.8
+      '@deck.gl/core': 8.9.33
+      '@types/mapbox-gl': 2.7.19
     dev: false
 
   /@emnapi/runtime@0.45.0:
@@ -2275,6 +2288,12 @@ packages:
     dependencies:
       '@types/node': 20.11.4
     dev: true
+
+  /@types/mapbox-gl@2.7.19:
+    resolution: {integrity: sha512-pkRdlhQJNbtwcKJSVC4uuOA6M3OlOObIMhNecqHB991oeaDF5XkjSIRaTE0lh5p4KClptSCxW6MBiREVRHrl2A==}
+    dependencies:
+      '@types/geojson': 7946.0.13
+    dev: false
 
   /@types/mapbox__point-geometry@0.1.4:
     resolution: {integrity: sha512-mUWlSxAmYLfwnRBmgYV86tgYmMIICX4kza8YnE/eIlywGe2XoOxlpVnXWwir92xRLjwyarqwpu2EJKD2pk0IUA==}

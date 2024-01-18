@@ -1,0 +1,19 @@
+meta {
+  name: Global Heatmap
+  type: http
+  seq: 1
+}
+
+get {
+  url: http://localhost:8080/api/v1/geography/global/heatmap?random=true
+  body: none
+  auth: bearer
+}
+
+query {
+  random: true
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJsb2ljLmhlcm1hbkBoZWlnLXZkLmNoIiwiaWF0IjoxNzA1NTk3MjQ3LCJleHAiOjE3MDU2MDA4NDd9.oUHccT0NW_2QoaqhGKnAmcgpb8bUBGIARUaCjn7nqnDuGnAh1pMS93YfSyr6Lj4eUH1-z0tXkWnMWM0aCvbRGg
+}
