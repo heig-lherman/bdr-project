@@ -44,3 +44,58 @@ BEGIN
     END LOOP;
 END;
 $$;
+
+-- Procedure 02: find a path between two stations
+CREATE OR REPLACE FUNCTION station_bfs_lookup(start_id bigint, end_id bigint, path_offset INT = 0)
+    RETURNS TABLE
+            (
+                rank             BIGINT,
+                opuic            BIGINT,
+                segment_id       BIGINT,
+                abbreviated_name VARCHAR,
+                name             VARCHAR
+            )
+    LANGUAGE plpgsql
+AS
+$$
+DECLARE
+    path  BIGINT[];
+    edges BIGINT[];
+BEGIN
+    -- Recursive BFS search
+    WITH RECURSIVE
+        reachable(fromuid, touid, edge_id)
+            AS (SELECT station.opuic, prev.station_start_fk, prev.id
+                FROM station
+                         JOIN segment prev ON station.opuic = prev.station_end_fk
+                UNION
+                SELECT station.opuic, next.station_end_fk, next.id
+                FROM station
+                         JOIN segment next ON station.opuic = next.station_start_fk),
+        distance(uid, distance, path, edges)
+            AS (SELECT end_id::BIGINT, 0, ARRAY [end_id]::BIGINT[], ARRAY []::BIGINT[]
+                UNION ALL
+                SELECT a.fromuid, b.distance + 1, a.fromuid || b.path, a.edge_id || b.edges
+                FROM reachable a
+                         JOIN distance b ON a.touid = b.uid
+                WHERE NOT (b.path @> ARRAY [a.fromuid]))
+    SELECT d.path, d.edges
+    INTO path, edges
+    FROM distance d
+    WHERE uid = start_id
+    OFFSET path_offset LIMIT 1;
+
+    IF NOT FOUND THEN
+        RAISE NOTICE 'No path found from % to %', start_id, end_id;
+        RETURN;
+    END IF;
+
+    RETURN QUERY (SELECT a.rank,
+                         a.opuic,
+                         edges[a.rank - 1]  AS segment_id,
+                         s.abbreviated_name AS abbreviated_name,
+                         s.name             AS name
+                  FROM unnest(path) WITH ORDINALITY a(opuic, rank)
+                           JOIN station s ON s.opuic = a.opuic);
+END;
+$$;

@@ -216,9 +216,7 @@
        references locality;
 
     alter table if exists traveller 
-       add constraint fk_user__team 
-       foreign key (team_fk) 
-       references team;
+       add constraint fk_user__team FOREIGN KEY (team_fk) REFERENCES team (id) ON DELETE SET NULL;
 
     alter table if exists traveller_token 
        add constraint fk_token__user 

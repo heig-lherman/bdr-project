@@ -40,7 +40,10 @@ public class User implements UserDetails {
     private String lastName;
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinColumn(name = "team_fk", foreignKey = @ForeignKey(name = "fk_user__team"))
+    @JoinColumn(name = "team_fk", foreignKey = @ForeignKey(
+            name = "fk_user__team",
+            foreignKeyDefinition = "FOREIGN KEY (team_fk) REFERENCES team (id) ON DELETE SET NULL"
+    ))
     private Team team;
 
     @OneToMany(mappedBy = "user")

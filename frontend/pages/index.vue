@@ -25,10 +25,13 @@
           :zoom="7.2"
           :interactive="false"
       ></mgl-map>
+      <!-- TODO (for user heatmap) move event for dynamic data--
+          @map:moveend="console.log"-->
 
       <div class="map-cover rounded-lg py-8 px-6">
         <h1 class="text-h4 font-weight-black text-blue-accent-1">Share your journeys with others</h1>
-        <h3 class="text-h5 font-weight-light">So far, users have travelled <strong>{{((totalDistance?.value ?? 0) / 1000).toFixed(2)}}km</strong></h3>
+        <h3 class="text-h5 font-weight-light">So far, users have travelled
+          <strong>{{ ((totalDistance?.value ?? 0) / 1000).toFixed(2) }}km</strong></h3>
       </div>
 
     </div>
