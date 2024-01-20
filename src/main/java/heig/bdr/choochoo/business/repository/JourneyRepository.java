@@ -23,10 +23,11 @@ public interface JourneyRepository extends Repository<Journey, Long> {
                         COUNT(DISTINCT js.segment_fk) as segmentCount
                     FROM journey j
                     LEFT JOIN journey_segment js on j.id = js.journey_fk
+                    WHERE j.user_fk = :userEmail
                     GROUP BY j.id
                     """
     )
-    List<JourneyListViewModel> findAll();
+    List<JourneyListViewModel> findAll(String userEmail);
 
     @Modifying
     @Query(

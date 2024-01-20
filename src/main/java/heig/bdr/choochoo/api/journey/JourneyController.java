@@ -23,7 +23,8 @@ public class JourneyController {
     @GetMapping
     @Transactional(readOnly = true)
     public List<JourneyListViewModel> getAll() {
-        return journeyRepository.findAll();
+        var email = UserSecurityGetter.getAuthenticatedUser().getEmail();
+        return journeyRepository.findAll(email);
     }
 
     @PostMapping
