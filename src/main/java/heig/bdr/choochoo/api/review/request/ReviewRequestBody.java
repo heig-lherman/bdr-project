@@ -1,5 +1,6 @@
 package heig.bdr.choochoo.api.review.request;
 
+import jakarta.validation.constraints.*;
 import lombok.Builder;
 import lombok.Data;
 import lombok.extern.jackson.Jacksonized;
@@ -8,7 +9,8 @@ import lombok.extern.jackson.Jacksonized;
 @Builder
 @Jacksonized
 public class ReviewRequestBody {
-    private final String review;
-    private final int grade;
-    private final long line;
+
+    private final @NotNull @Positive long line;
+    private final @NotBlank @Size(max = 2000) String review;
+    private final @NotNull @Min(0) @Max(10) int grade;
 }

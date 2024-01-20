@@ -4,12 +4,14 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 public interface ReviewListViewModel {
-    @NotNull Long getLine();
+
+    @NotNull int getLine();
+
+    Long getAssessmentId();
+    Integer getGrade();
+    String getComment();
 
     @NotBlank String getLineName();
     @NotBlank String getStationStart();
     @NotBlank String getStationEnd();
-    @NotBlank Long getId();
-
-    @NotNull Long getGrade();
 }
