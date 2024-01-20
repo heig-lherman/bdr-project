@@ -63,6 +63,7 @@ const links = [
   {path: '/teams', label: 'Teams'},
   {path: '/journeys', label: 'Journeys'},
   {path: '/reviews', label: 'Reviews'},
+  {path: '/progress', label: 'Progress'},
 ];
 
 const {data, status, signOut} = useAuth();

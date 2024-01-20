@@ -99,3 +99,64 @@ BEGIN
                            JOIN station s ON s.opuic = a.opuic);
 END;
 $$;
+
+-- Procedure 03: find reachable stations within single lines from a station
+CREATE OR REPLACE FUNCTION get_connecting_stations(start_uid BIGINT, max_distance INTEGER = 10)
+    RETURNS TABLE
+            (
+                opuic            BIGINT,
+                abbreviated_name VARCHAR,
+                name             VARCHAR,
+                geoposition      GEOGRAPHY,
+                line             INTEGER,
+                edges            BIGINT[],
+                distance         INTEGER
+            )
+    STABLE
+    LANGUAGE sql
+AS
+$$
+WITH RECURSIVE
+    reachable(fromuid, touid, edge_id, line)
+        AS (SELECT station.opuic, prev.station_start_fk, prev.id, prev.line_fk
+            FROM station
+                     JOIN segment prev ON station.opuic = prev.station_end_fk
+            UNION
+            SELECT station.opuic, next.station_end_fk, next.id, next.line_fk
+            FROM station
+                     JOIN segment next ON station.opuic = next.station_start_fk),
+    distance(lines, end_uid, edges, distance)
+        AS (SELECT ARRAY(SELECT DISTINCT line FROM reachable WHERE fromuid = start_uid),
+                   start_uid::BIGINT,
+                   ARRAY []::BIGINT[],
+                   0
+            UNION ALL
+            SELECT ARRAY [a.line], a.touid, a.edge_id || b.edges, b.distance + 1
+            FROM reachable a
+                     JOIN distance b ON a.fromuid = b.end_uid AND a.line = ANY (b.lines)
+            WHERE NOT (b.edges @> ARRAY [a.edge_id])
+              AND b.distance < max_distance)
+SELECT d.end_uid,
+       s.abbreviated_name,
+       s.name,
+       s.position,
+       d.lines[1],
+       d.edges,
+       d.distance
+FROM distance d
+         JOIN station s ON s.opuic = d.end_uid
+WHERE d.distance > 0
+ORDER BY distance;
+$$;
+
+-- Procedure 4: find distance of all segements in array of ids
+CREATE OR REPLACE FUNCTION get_segments_distance(segments BIGINT[])
+    RETURNS INTEGER
+    STABLE
+    LANGUAGE sql
+AS
+$$
+SELECT SUM(distance) as total_distance
+FROM unnest(segments) AS segment_id
+         JOIN segment ON segment.id = segment_id;
+$$;

@@ -51,7 +51,7 @@
       </v-container>
     </div>
 
-    <v-footer>
+    <v-footer class="flex-grow-0">
       &copy; {{ currentYear }} - Project ChooChoo
     </v-footer>
   </div>
@@ -102,7 +102,7 @@ watchOnce(toRef(map, 'isMounted'), () => {
           extruded: true,
           getLineColor: f => {
             const p = f.properties?.percentage ?? 0;
-            return [255 * p, 128 * (1 - p), 255 * (1 - p), 170 + 80 * p] as Color;
+            return [255 * p, 128 * (1 - p), 255 * (1 - p), 50 + 200 * p] as Color;
           },
           getLineWidth: 10,
           lineWidthScale: 50,

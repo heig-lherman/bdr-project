@@ -1,5 +1,5 @@
 <template>
-  <v-data-table-server
+  <v-data-table
       :headers="headers"
       :items="data"
       :items-length="data?.length ?? 0"
@@ -7,12 +7,6 @@
       :loading="pending"
   >
     <template v-slot:item.actions="{ item }">
-      <v-btn
-          color="primary"
-          :to="`/teams/${item.id}`"
-          small
-          text="View"
-      />
       <v-btn
           v-if="currentTeam !== item.id"
           color="secondary"
@@ -32,7 +26,7 @@
           @click="onLeaveTeam"
       />
     </template>
-  </v-data-table-server>
+  </v-data-table>
 </template>
 
 <script setup lang="ts">

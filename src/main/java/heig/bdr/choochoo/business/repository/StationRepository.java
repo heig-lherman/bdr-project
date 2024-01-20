@@ -10,12 +10,13 @@ import java.util.Optional;
 @Repository
 public interface StationRepository extends JpaRepository<Station, Long> {
 
+    // -- Dynamic queries for reference data mapping
+
     @Query("""
             SELECT station
                 FROM Station station
                 WHERE UNACCENT(LOWER(station.name)) = UNACCENT(LOWER(:name))
             """)
     Optional<Station> findByNameInsensitive(String name);
-
     Optional<Station> findByAbbreviatedName(String abbreviatedName);
 }

@@ -43,6 +43,7 @@ dependencies {
     testImplementation("org.hibernate.orm:hibernate-ant")
     runtimeOnly("org.postgresql:postgresql")
     implementation("org.liquibase:liquibase-core")
+    implementation("io.hypersistence:hypersistence-utils-hibernate-63:3.7.0")
 
     // geospatial data
     implementation("org.n52.jackson:jackson-datatype-jts:1.2.10")

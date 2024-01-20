@@ -1,0 +1,15 @@
+meta {
+  name: Connecting search
+  type: http
+  seq: 3
+}
+
+get {
+  url: http://localhost:8080/api/v1/stations/search/6.659787/46.779243/closest
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJsb2ljLmhlcm1hbkBoZWlnLXZkLmNoIiwiaWF0IjoxNzA1NjY2MjY0LCJleHAiOjE3MDU2Njk4NjR9.dlTMah3FnpT7DRKFi7lprW5ijiNKyjwoChGNWomL2z1m81roesCKpVcaB58IR8I3uPlcw20ZvPmeUEDdk8i-IQ
+}
