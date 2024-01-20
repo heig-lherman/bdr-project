@@ -1,16 +1,38 @@
--- Procedure 01: duplicate a journey when a user travels with a  group
-CREATE OR REPLACE PROCEDURE clone_journey_for_team(p_user_email varchar, p_journey_id bigint)
+-- Procedure 01: create a journey optionally cloning for the whole team
+CREATE OR REPLACE PROCEDURE create_journey(
+    user_email VARCHAR,
+    start_date TIMESTAMPTZ,
+    end_date TIMESTAMPTZ,
+    segments BIGINT[],
+    grade INTEGER,
+    review VARCHAR,
+    with_team BOOLEAN = TRUE
+)
     LANGUAGE plpgsql AS
 $$
 DECLARE
-    team_id        bigint;
-    new_user_fk    varchar;
-    new_journey_id bigint;
+    -- initial insertion
+    team_id        BIGINT;
+    journey_id     BIGINT;
+    -- copy insertion
+    new_user_fk    VARCHAR;
+    new_journey_id BIGINT;
 BEGIN
+    INSERT INTO journey (start_date, end_date, grade, review, user_fk)
+    SELECT start_date, end_date, grade, review, user_email
+    RETURNING id INTO journey_id;
+
+    INSERT INTO journey_segment (journey_fk, segment_fk)
+    SELECT journey_id, unnest(segments);
+
+    IF NOT with_team THEN
+        RETURN;
+    END IF;
+
     SELECT team_fk
     INTO team_id
     FROM traveller
-    WHERE email = p_user_email
+    WHERE email = user_email
       AND team_fk IS NOT NULL;
 
     IF NOT FOUND THEN
@@ -23,25 +45,15 @@ BEGIN
         SELECT email
         FROM traveller
         WHERE team_fk = team_id
-          AND traveller.email != p_user_email
-    LOOP
-        INSERT INTO journey (start_date, end_date, grade, review, user_fk)
-        SELECT start_date, end_date, grade, review, new_user_fk
-        FROM journey
-        WHERE id = p_journey_id
-          AND user_fk = p_user_email
-        RETURNING id
-            INTO new_journey_id;
+          AND traveller.email != user_email
+        LOOP
+            INSERT INTO journey (start_date, end_date, grade, review, user_fk)
+            SELECT start_date, end_date, grade, review, new_user_fk
+            RETURNING id INTO new_journey_id;
 
-        IF NOT FOUND THEN
-            RAISE EXCEPTION 'The journey either does not exist or has not been completed by the user.';
-        END IF;
-
-        INSERT INTO journey_segment (journey_fk, segment_fk)
-        SELECT new_journey_id, journey_segment.segment_fk
-        FROM journey_segment
-        WHERE journey_segment.journey_fk = p_journey_id;
-    END LOOP;
+            INSERT INTO journey_segment (journey_fk, segment_fk)
+            SELECT new_journey_id, unnest(segments);
+        END LOOP;
 END;
 $$;
 
