@@ -18,13 +18,17 @@
       </v-col>
       <v-col cols="12" md="9">
         <v-card-subtitle>Team statistics</v-card-subtitle>
-        <!-- TODO -->
+        <v-card-text>
+          <AtomsCantonsProgress :items="cantonsData" display="horizontal" />
+        </v-card-text>
       </v-col>
     </v-row>
   </v-card>
 </template>
 
 <script setup lang="ts">
+import { useDefaultFetch } from '#imports';
+
 const props = defineProps({
   teamId: {
     type: Number,
@@ -34,5 +38,9 @@ const props = defineProps({
 
 const {data: team} = await useDefaultFetch('/v1/teams/{teamId}', {
   path: {teamId: props.teamId}
+});
+
+const {data: cantonsData} = useDefaultFetch('/v1/teams/{teamId}/progress/cantons', {
+  path: {teamId: props.teamId},
 });
 </script>

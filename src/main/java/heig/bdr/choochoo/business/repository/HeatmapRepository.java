@@ -24,15 +24,6 @@ public interface HeatmapRepository extends Repository<HeatmapView, Long> {
     @Query(
             nativeQuery = true,
             value = """
-                    SELECT * FROM user_heatmap
-                    WHERE user_fk = :userEmail;
-                    """
-    )
-    List<HeatmapView> getUserHeatmap(String userEmail);
-
-    @Query(
-            nativeQuery = true,
-            value = """
                     SELECT SUM(distance)
                     FROM traveller
                              JOIN journey j ON traveller.email = j.user_fk

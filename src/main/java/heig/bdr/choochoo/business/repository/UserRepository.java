@@ -32,7 +32,7 @@ public interface UserRepository extends JpaRepository<User, String> {
     )
     void leaveTeam(String email);
 
-    // Required for proper authentication
+    // Required for authentication system
     @EntityGraph(attributePaths = {"team"})
     Optional<User> findByEmail(String email);
     boolean existsByEmail(String email);

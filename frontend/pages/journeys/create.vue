@@ -59,7 +59,7 @@
 
           <v-card elevation="4" rounded="lg">
             <v-card-item>
-              <v-card-title>Tracked segements</v-card-title>
+              <v-card-title>Tracked segments</v-card-title>
             </v-card-item>
             <v-card-text>
               <AtomsStationAutocomplete

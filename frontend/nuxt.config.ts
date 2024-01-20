@@ -20,6 +20,10 @@ export default defineNuxtConfig({
         head: {
             charset: 'utf-8',
             viewport: 'width=device-width, initial-scale=1',
+            link: [
+                {rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg'},
+                {rel: 'icon', type: 'image/png', href: '/favicon.png'}
+            ]
         }
     },
     auth: {
@@ -39,12 +43,12 @@ export default defineNuxtConfig({
             },
             token: {
                 signInResponseTokenPointer: '/accessToken',
-                maxAgeInSeconds: 3600,
+                maxAgeInSeconds: 86400,
                 sameSiteAttribute: 'strict'
             },
             refreshToken: {
                 signInResponseRefreshTokenPointer: '/refreshToken',
-                maxAgeInSeconds: 86400,
+                maxAgeInSeconds: 604800,
             },
             sessionDataType: {
                 email: 'string',

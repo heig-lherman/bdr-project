@@ -1,24 +1,23 @@
 package heig.bdr.choochoo.api.team;
 
+import heig.bdr.choochoo.api.progress.mapping.CantonProgressMapper;
+import heig.bdr.choochoo.api.progress.model.CantonProgressViewModel;
 import heig.bdr.choochoo.api.team.mapping.TeamDetailMapper;
 import heig.bdr.choochoo.api.team.model.TeamDetailViewModel;
 import heig.bdr.choochoo.api.team.model.TeamListViewModel;
 import heig.bdr.choochoo.api.team.request.TeamRequestBody;
+import heig.bdr.choochoo.business.repository.CantonProgressRepository;
 import heig.bdr.choochoo.business.repository.TeamRepository;
 import heig.bdr.choochoo.business.repository.UserRepository;
 import heig.bdr.choochoo.security.UserSecurityGetter;
 import jakarta.validation.Valid;
-import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(path = "/v1/teams", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -27,7 +26,9 @@ public class TeamController {
 
     private final UserRepository userRepository;
     private final TeamRepository teamRepository;
+    private final CantonProgressRepository cantonProgressRepository;
     private final TeamDetailMapper teamDetailMapper;
+    private final CantonProgressMapper cantonProgressMapper;
 
     @GetMapping
     @Transactional(readOnly = true)
@@ -39,6 +40,14 @@ public class TeamController {
     @Transactional(readOnly = true)
     public TeamDetailViewModel getOne(@PathVariable Long teamId) {
         return teamDetailMapper.toViewModel(teamRepository.findDetailById(teamId));
+    }
+
+    @GetMapping("/{teamId}/progress/cantons")
+    @Transactional(readOnly = true)
+    public List<CantonProgressViewModel> getCantonProgress(@PathVariable Long teamId) {
+        return cantonProgressRepository.getTeamCantonProgress(teamId).stream()
+                .map(cantonProgressMapper::toViewModel)
+                .toList();
     }
 
     @PostMapping("/{teamId}/join")
