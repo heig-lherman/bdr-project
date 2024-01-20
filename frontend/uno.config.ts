@@ -7,8 +7,8 @@ export default defineConfig({
         presetIcons({
             scale: 1.2,
             collections: {
-                chc: () => import('./assets/ch-cantons.json').then((data) => data.default),
+                chc: () => import('./icons/ch-cantons.json').then((data) => data.default),
             },
         }),
     ]
-})
+});

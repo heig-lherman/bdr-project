@@ -1,4 +1,4 @@
-package heig.bdr.choochoo.configuration.model;
+package heig.bdr.choochoo.configuration;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 

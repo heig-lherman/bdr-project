@@ -27,7 +27,6 @@
       <v-col cols="8" class="map-column">
         <v-sheet height="100%" rounded="lg" elevation="6" class="position-relative overflow-hidden">
           <mgl-map
-              ref="map"
               :map-style="styleUrl"
               :center="[8.226667, 46.801111]"
               :zoom="7.4"

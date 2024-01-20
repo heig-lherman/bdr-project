@@ -17,9 +17,23 @@ services:
     image: choochoo/backend:latest
     restart: unless-stopped
     environment:
-      DATABASE_URL: jdbc:postgresql://choochoo_database:5432/postgres?user=choochoo&password=choochoo
-      JWT_SECRET_KEY: ryFe1fF2NPOPCDVijKN0CFwg1FEoH3A3wXiZOXqAq488ohmY7i77aZK952hPgZxSs9YXxgX3jT2NnIaYPAINPQfOuQjOKIJ8C/wDiSFwRtqgWCnwFmJn7y6y7jbM1c5GU4bYzZHsHrWaBS3tsh50f1N9yjBj8AX0szP6xwFfEF3G9UsFhghEnfFDRbuI9Sk4SbT7yuMlETJ+DQXyVeZqnYF2Ail/eBmqiS9t8A==
+      DATABASE_URL: ${BACKEND_DATABASE_URL}
+      JWT_SECRET_KEY: ${BACKEND_JWT_SECRET_KEY}
     ports:
       - 8080:8080
     depends_on:
       - database
+  frontend:
+    build:
+      context: ../frontend
+      dockerfile: ../docker/Dockerfile-frontend
+    container_name: choochoo_frontend
+    image: choochoo/frontend:latest
+    restart: unless-stopped
+    environment:
+      API_BASE_URL: ${FRONTEND_API_BASE_URL}
+      GEOPS_API_KEY: ${FRONTEND_GEOPS_API_KEY}
+    ports:
+      - 3000:80
+    depends_on:
+      - backend

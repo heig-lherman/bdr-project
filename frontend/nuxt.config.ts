@@ -22,13 +22,13 @@ export default defineNuxtConfig({
             viewport: 'width=device-width, initial-scale=1',
             link: [
                 {rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg'},
-                {rel: 'icon', type: 'image/png', href: '/favicon.png'}
-            ]
-        }
+                {rel: 'icon', type: 'image/png', href: '/favicon.png'},
+            ],
+        },
     },
     auth: {
         isEnabled: true,
-        baseURL: `${process.env.API_URL}/api/v1/auth`,
+        baseURL: `${process.env.API_BASE_URL}/api/v1/auth`,
         provider: {
             type: 'refresh',
             endpoints: {
@@ -44,7 +44,7 @@ export default defineNuxtConfig({
             token: {
                 signInResponseTokenPointer: '/accessToken',
                 maxAgeInSeconds: 86400,
-                sameSiteAttribute: 'strict'
+                sameSiteAttribute: 'strict',
             },
             refreshToken: {
                 signInResponseRefreshTokenPointer: '/refreshToken',
@@ -54,40 +54,40 @@ export default defineNuxtConfig({
                 email: 'string',
                 displayName: 'string',
                 firstname: 'string',
-                lastName: 'string'
-            }
+                lastName: 'string',
+            },
         },
         globalAppMiddleware: true,
     },
     image: {
-        provider: 'unsplash'
+        provider: 'unsplash',
     },
     vuetify: {
         moduleOptions: {},
         vuetifyOptions: {
             theme: {
-                defaultTheme: 'dark'
+                defaultTheme: 'dark',
             },
             icons: {
-                defaultSet: 'unocss-mdi'
-            }
-        }
+                defaultSet: 'unocss-mdi',
+            },
+        },
     },
     openFetch: {
         clients: {
             default: {
-                baseURL: `${process.env.API_URL}/api`,
-                schema: `${process.env.API_URL}/api/api-docs`
+                baseURL: `${process.env.API_BASE_URL}/api`,
+                schema: 'openapi/api-docs.json',
             },
         },
         disablePlugin: true,
     },
     runtimeConfig: {
         public: {
-            baseURL: `${process.env.API_URL}/api/v1`,
+            baseURL: `${process.env.API_BASE_URL}/api/v1`,
             maps: {
-                geopsKey: process.env.GEOPS_API_KEY,
-                styleUrl: `https://maps.geops.io/styles/base_dark_v2/style.json?key=${process.env.GEOPS_API_KEY}`
+                geopsKey: `${process.env.GEOPS_API_KEY}`,
+                styleUrl: `https://maps.geops.io/styles/base_dark_v2/style.json?key=${process.env.GEOPS_API_KEY}`,
             },
         },
     },

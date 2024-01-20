@@ -1,7 +1,7 @@
 <template>
   <div>
     <NuxtLayout>
-      <NuxtLoadingIndicator />
+      <NuxtLoadingIndicator/>
       <ClientOnly>
         <VSonner position="top-right" offset="6rem"/>
       </ClientOnly>
@@ -11,7 +11,7 @@
 </template>
 
 <script setup lang="ts">
-import {VSonner} from 'vuetify-sonner';
+import { VSonner } from 'vuetify-sonner';
 
 useHead({
   titleTemplate: (titleChunk) => titleChunk

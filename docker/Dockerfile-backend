@@ -1,16 +1,16 @@
 FROM gradle:8.5.0-jdk21-alpine as builder
-COPY --chown=gradle:gradle . /home/gradle/src
-WORKDIR /home/gradle/src
-RUN gradle build --no-daemon -x test
 
-FROM openjdk:21
-
-EXPOSE 8080
-
-RUN mkdir /app
-
+COPY --chown=gradle:gradle build.gradle.kts /app/
+COPY --chown=gradle:gradle settings.gradle.kts /app/
+COPY --chown=gradle:gradle src /app/src
 WORKDIR /app
 
-COPY --from=builder /home/gradle/src/build/libs/*.jar /app/app.jar
+RUN --mount=type=cache,target=~/.gradle gradle clean bootJar --no-daemon --stacktrace
 
+FROM eclipse-temurin:21-jre-alpine AS runner
+
+COPY --from=builder /app/build/libs/*.jar /app/app.jar
+WORKDIR /app
+
+EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "/app/app.jar"]

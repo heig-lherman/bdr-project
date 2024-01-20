@@ -1,6 +1,6 @@
 package heig.bdr.choochoo.business.service.security;
 
-import heig.bdr.choochoo.configuration.model.JwtSecurityProperties;
+import heig.bdr.choochoo.configuration.JwtSecurityProperties;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;

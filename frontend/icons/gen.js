@@ -42,5 +42,5 @@ import fs from 'node:fs/promises';
     const exported = JSON.stringify(iconSet.export(), null, '\t') + '\n';
 
     // Save to file
-    await fs.writeFile(`assets/${iconSet.prefix}.json`, exported, 'utf8');
+    await fs.writeFile(`icons/${iconSet.prefix}.json`, exported, 'utf8');
 })();

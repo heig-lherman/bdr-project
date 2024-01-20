@@ -1,7 +1,6 @@
 package heig.bdr.choochoo.configuration;
 
 import heig.bdr.choochoo.business.repository.UserRepository;
-import heig.bdr.choochoo.configuration.model.JwtSecurityProperties;
 import heig.bdr.choochoo.security.filter.JwtFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;

@@ -19,7 +19,6 @@
 
     <div class="hero-section">
       <mgl-map
-          ref="map"
           :map-style="styleUrl"
           :center="[8.226667, 46.801111]"
           :zoom="7.2"
