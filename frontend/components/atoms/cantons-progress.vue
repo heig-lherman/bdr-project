@@ -3,7 +3,7 @@
     <v-col
         v-for="canton in items"
         :key="canton.cantonCode"
-        :cols="display === 'vertical' ? 6 : 2"
+        :cols="display === 'vertical' ? 6 : 3"
     >
       <div class="d-flex flex-column justify-end">
         <div class="d-flex flex-row align-center justify-space-between mb-1">

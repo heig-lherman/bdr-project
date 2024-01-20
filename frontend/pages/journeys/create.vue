@@ -432,7 +432,7 @@ const onSubmit = handleSubmit(async (body) => {
       startDate: body.startDate.toISOString(),
       endDate: body.startDate.toISOString(),
       segments: body.segments,
-      grade: Math.max(Math.round(body.reviewGrade * 2), 10),
+      grade: Math.min(Math.round(body.reviewGrade * 2), 10),
       review: body.reviewNote,
       team: body.team,
     },

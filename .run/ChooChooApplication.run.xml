@@ -1,5 +1,9 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="ChooChooApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+    <envs>
+      <env name="DATABASE_URL" value="jdbc:postgresql://localhost:5432/choochoo?user=choochoo&amp;password=choochoo" />
+      <env name="JWT_SECRET_KEY" value="lQxlxhG7xjvj7joIfL6lcr2sTdABXwOum2/ENJtxSzFgWcXN4w6HPenVwZnmNfLnl7O/wrx3Ls2Gl4pzXn1ntQFzYZnPpkqP/xHOzUO+Jivj83bPP41lL67eq5UuW/PVIZbHKbCzPDK2FAAnJ0EueQplP8UP5hiQbSMJSb/7IhQ+IxrVEr0P14spYwVI3I8HLxefXdjN4ZuTKnYjlcrAPg3E7loTm1tH8Mt/5w==" />
+    </envs>
     <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
     <module name="choo-choo.main" />
     <option name="SPRING_BOOT_MAIN_CLASS" value="heig.bdr.choochoo.ChooChooApplication" />

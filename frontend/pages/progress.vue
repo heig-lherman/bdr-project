@@ -15,7 +15,7 @@
 
     <v-row class="h-100">
       <v-col cols="4" class="cantons-column">
-        <v-card height="100%" rounded="lg" elevation="6" class="overflow-hidden">
+        <v-card height="100%" rounded="lg" elevation="6" class="overflow">
           <v-card-item>
             <v-card-title>Your progress by canton</v-card-title>
           </v-card-item>
@@ -104,6 +104,11 @@ function getPercentage(progress: components['schemas']['UserProgressViewModel'])
   top: 6rem;
   bottom: 0;
   left: 0;
+}
+
+.cantons-column .overflow {
+  overflow-y: auto;
+  overflow-y: overlay;
 }
 
 .map-column {
