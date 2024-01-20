@@ -9,3 +9,17 @@ services:
       POSTGRES_PASSWORD: choochoo
     ports:
       - 5432:5432
+  backend:
+    build:
+      context: ../
+      dockerfile: docker/Dockerfile-backend
+    container_name: choochoo_backend
+    image: choochoo/backend:latest
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: jdbc:postgresql://choochoo_database:5432/postgres?user=choochoo&password=choochoo
+      JWT_SECRET_KEY: ryFe1fF2NPOPCDVijKN0CFwg1FEoH3A3wXiZOXqAq488ohmY7i77aZK952hPgZxSs9YXxgX3jT2NnIaYPAINPQfOuQjOKIJ8C/wDiSFwRtqgWCnwFmJn7y6y7jbM1c5GU4bYzZHsHrWaBS3tsh50f1N9yjBj8AX0szP6xwFfEF3G9UsFhghEnfFDRbuI9Sk4SbT7yuMlETJ+DQXyVeZqnYF2Ail/eBmqiS9t8A==
+    ports:
+      - 8080:8080
+    depends_on:
+      - database
