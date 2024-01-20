@@ -6,11 +6,10 @@
         :cols="display === 'vertical' ? 6 : 2"
     >
       <div class="d-flex flex-column justify-end">
-        <div class="d-flex flex-row align-center justify-space-between">
+        <div class="d-flex flex-row align-center justify-space-between mb-1">
           <div class="d-flex flex-row align-center text-body-1">
-            <!-- TODO: fix icon display -->
             <i :class="`i-chc:${canton.cantonCode.toLowerCase()}`"></i>
-            <span>{{canton.cantonName}}</span>
+            <span class="ms-1">{{canton.cantonName}}</span>
           </div>
           <span class="text-teal">
             {{ getPercentage(canton).toFixed(1) }}%

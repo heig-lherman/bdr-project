@@ -37,4 +37,6 @@ public class Line {
     @OneToMany(mappedBy = "line", cascade = { CascadeType.ALL }, orphanRemoval = true)
     private Set<Segment> segments;
 
+    @OneToMany(mappedBy = "line", cascade = { CascadeType.ALL }, orphanRemoval = true)
+    private Set<LineAssessment> assessments;
 }
