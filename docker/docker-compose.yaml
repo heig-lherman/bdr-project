@@ -1,14 +1,20 @@
-version: '3.8'
+version: "3.8"
 services:
   database:
     container_name: choochoo_database
     image: postgis/postgis:16-3.4-alpine
     restart: unless-stopped
     environment:
+      PGUSER: choochoo
       POSTGRES_USER: choochoo
       POSTGRES_PASSWORD: choochoo
-    ports:
-      - 5432:5432
+    expose:
+      - 5432
+    healthcheck:
+      test: ["CMD", "pg_isready"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
   backend:
     build:
       context: ../
@@ -22,7 +28,8 @@ services:
     ports:
       - 8080:8080
     depends_on:
-      - database
+      database:
+        condition: service_healthy
   frontend:
     build:
       context: ../frontend
