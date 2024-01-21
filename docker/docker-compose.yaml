@@ -10,6 +10,10 @@ services:
       POSTGRES_PASSWORD: choochoo
     expose:
       - 5432
+    ports:
+      - 5432:5432
+    volumes:
+      - db-data:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD", "pg_isready"]
       interval: 10s
@@ -44,3 +48,5 @@ services:
       - 3000:80
     depends_on:
       - backend
+volumes:
+  db-data: {}
