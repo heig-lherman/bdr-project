@@ -9,6 +9,12 @@ WORKDIR /app
 
 FROM base AS build
 
+ARG API_BASE_URL=""
+ARG GEOPS_API_KEY=""
+
+ENV API_BASE_URL=$API_BASE_URL
+ENV GEOPS_API_KEY=$GEOPS_API_KEY
+
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
 RUN pnpm run generate
 
